@@ -154,12 +154,6 @@ class YouTubeFetcher:
         Fixes: "Sign in to confirm you're not a bot".
         """
         opts = {
-            "extractor_args": {
-                "youtube": {
-                    "player_client": ["ios", "android", "tv"],
-                    "player_skip": ["webpage", "configs"]
-                }
-            },
             "http_headers": {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             },
@@ -171,6 +165,8 @@ class YouTubeFetcher:
         if proxy:
             opts["proxy"] = proxy
             logger.info("Using Proxy: %s", proxy)
+            logger.info("Proxy active: ignoring cookies.txt to prevent session mismatch.")
+            return opts
 
         if YT_COOKIES_FILE:
             cf_path = Path(YT_COOKIES_FILE)

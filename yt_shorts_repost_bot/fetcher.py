@@ -36,12 +36,6 @@ class ShortsFetcher:
     @staticmethod
     def _cookies_opts() -> dict:
         opts = {
-            "extractor_args": {
-                "youtube": {
-                    "player_client": ["ios", "android", "tv"],
-                    "player_skip": ["webpage", "configs"]
-                }
-            },
             "http_headers": {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             },
@@ -53,6 +47,9 @@ class ShortsFetcher:
         if proxy:
             opts["proxy"] = proxy
             logger.info("Using Proxy: %s", proxy)
+            # DO NOT send cookies over proxy to avoid session IP mismatch
+            logger.info("Proxy active: ignoring cookies.txt to prevent session mismatch.")
+            return opts
 
         # Search several places for a cookies.txt so the repost bot can share
         # the one from the clip-farming bot (yt_shorts_bot/) automatically:
