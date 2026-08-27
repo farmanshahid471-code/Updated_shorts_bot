@@ -156,7 +156,8 @@ class YouTubeFetcher:
         opts = {
             "extractor_args": {
                 "youtube": {
-                    "player_client": ["tv", "ios", "android", "web"]
+                    "player_client": ["ios", "android", "tv"],
+                    "player_skip": ["webpage", "configs"]
                 }
             },
             "http_headers": {
