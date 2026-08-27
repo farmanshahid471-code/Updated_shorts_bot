@@ -38,7 +38,7 @@ class ShortsFetcher:
         opts = {
             "extractor_args": {
                 "youtube": {
-                    "player_client": ["ios", "android", "tv"]
+                    "player_client": ["tv", "ios", "android", "web"]
                 }
             },
             "http_headers": {
